@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aplikasi Cuaca</title>
+</head>
+<body>
+    <h1>Cek Cuaca</h1>
+
+    <input type="text" id="kota" placeholder="Masukkan kota">
+    <button onclick="cekCuaca()">Cari</button>
+
+    <h3 id="hasil"></h3>
+
+    <script>
+        async function cekCuaca() {
+            const kota = document.getElementById("kota").value;
+
+            const response = await fetch(`/api/cuaca?kota=${kota}`);
+            const data = await response.json();
+
+            document.getElementById("hasil").innerHTML =
+                `Suhu di ${kota}: ${data.main.temp}°C`;
+        }
+    </script>
+</body>
+</html>
